@@ -1,0 +1,58 @@
+:root {
+  --background: #F5F0E4;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes monster-shake {
+  0% { transform: translate(-50%,-50%) rotate(-7deg); }
+  100% { transform: translate(-50%,-50%) rotate(7deg); }
+}
+
+.shake-bar {
+  animation: shakeY 0.5s linear infinite;
+}
+@keyframes shakeY {
+  0% { transform: translateY(0); }
+  10% { transform: translateY(-4px); }
+  20% { transform: translateY(4px); }
+  30% { transform: translateY(-4px); }
+  40% { transform: translateY(4px); }
+  50% { transform: translateY(-2px); }
+  60% { transform: translateY(2px); }
+  70% { transform: translateY(-2px); }
+  80% { transform: translateY(2px); }
+  90% { transform: translateY(-1px); }
+  100% { transform: translateY(0); }
+}
+
+.bar-blink {
+  animation: barBlink 0.7s steps(2, start) infinite;
+}
+@keyframes barBlink {
+  0% { opacity: 0.25; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.25; }
+}
+
+.heartbeat-animate {
+  animation: heartbeat-bounce 0.3s cubic-bezier(0.4,0,0.4,1);
+}
+@keyframes heartbeat-bounce {
+  0% { transform: translate(-50%, -50%) scale(0.4); }
+  20% { transform: translate(-50%, -50%) scale(0.55); }
+  40% { transform: translate(-50%, -50%) scale(0.35); }
+  60% { transform: translate(-50%, -50%) scale(0.5); }
+  100% { transform: translate(-50%, -50%) scale(0.4); }
+}

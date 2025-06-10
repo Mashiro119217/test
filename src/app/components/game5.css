@@ -1,0 +1,461 @@
+/* 外包裝：可置中 + RWD */
+.game-wrapper {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow: scroll;
+    
+    
+  }
+  
+  /* 桌機預設：左右排列 */
+  .game-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+    max-width: 1200px;
+    width: 100%;
+    height: 90%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  /* Info panel（左欄） */
+  .info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-shrink: 0;
+    width: 340px;
+    height: 100%; /* 給定高度由外層控制 */
+    margin-right: 50px;
+  }
+
+  .right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    min-width: 0;
+    flex-wrap: nowrap;
+  }
+  
+  .timer-box {
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+    gap: 30px;
+    background: #E36B5B;
+    color: #F5F0E4;
+    padding: 40px;
+    border-radius: 24px;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+
+  .timer-box,
+  .score-box {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .timer-img {
+    width: 30%;
+  }
+  
+  .score-box {
+    display: flex;
+    width: 120%;
+    gap: 30px;
+  }
+  
+  .score {
+    flex: 1;
+    background: #4a4a6a;
+    border-radius: 24px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+  }
+  
+  .score.good {
+    background: #4a4a6a;
+  }
+  
+  .score.bad {
+    background: #c5ac6b;
+  }
+
+  
+  .score-icon {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .score-num {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Grill panel（右欄） */
+  .grill-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    background: #4a4a6a;
+    padding: 32px;
+    border-radius: 32px;
+    flex: 1;
+    box-sizing: border-box;
+    width: 90%;
+    max-width: 100%
+    
+    
+  }
+  
+  .takoyaki-hole {
+    aspect-ratio: 1 / 1;
+    background-color: #F5F0E4;
+    background-image: url('/images/empty.png'); /* 替換為你的圖片路徑 */
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+
+  .takoyaki-hole.raw {
+        background-image: url('/images/raw.png'); /* 替換為你的圖片路徑 */
+        background-size: 90%;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: all 0.2s ease;
+  }
+  .takoyaki-hole.cooked {
+    background-image: url('/images/cooked.png'); /* 替換為你的圖片路徑 */
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.2s ease;
+  }
+  .takoyaki-hole.burnt {
+    background-image: url('/images/burnt.png'); /* 替換為你的圖片路徑 */
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.2s ease;
+  }
+
+  .hint-panel {
+    background-color:#E36B5B;
+    padding: 20px 20px;
+    border-radius: 16px;
+    color:#F5F0E4;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    letter-spacing: 0.05em;
+    width: 85%;
+  }
+
+  .hint-img {
+    width: 80px;
+  }
+
+  /* 預設：大螢幕顯示跑馬燈，隱藏靜態文字 */
+   .large-only {
+        display: block;
+    }
+    .small-only {
+        display: none;
+    }
+
+    .marquee {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        height: 30px;
+        background: #E36B5B;
+        color: #F5F0E4;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 10px;
+      }
+    
+    .marquee-content {
+        white-space: nowrap;
+        display: inline-block;
+        will-change: transform;
+        animation: scroll-left 10s linear forwards;
+        font-size: 26px;
+        line-height: 30px;
+        color: #F5F0E4;
+    }
+    
+    @keyframes scroll-left {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+    }
+
+    .key-transition {
+        transition: opacity 0.8s ease-in-out;
+      }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .result-box {
+    background: #f9f3e8;
+    border-radius: 24px;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .result-icon {
+    width: 150px;
+    height: 150px;
+    margin-bottom: -40px;
+  }
+  
+  .result-title {
+    font-size: 40px;
+    font-weight:900;
+    color: #505166;
+    margin-bottom: 36px;
+  }
+  
+  .result-buttons {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+  
+  .btn {
+    padding: 15px 45px;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    min-width: 120px;
+    letter-spacing: 0.05em;
+  }
+  
+  .btn-gold {
+    background-color: #c5ac6b;
+  }
+  
+  .btn-red {
+    background-color: #e36b5b;
+  }
+  
+  /* RWD：螢幕小於 960px 時變為上下排列 */
+  @media (max-width: 1200px) {
+    .game-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      margin-top: 0px;
+    }
+  
+    .info-panel {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      height: 20%;
+      gap: 16px;
+      margin-right: 0px;
+    }
+
+    .right-panel {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        flex: 1;
+        min-width: 0;
+      }
+      
+
+    .timer-box {
+        width: 25%;
+        gap: 15px;
+        font-size: 2.5rem;
+        padding: 0px;
+    }
+
+    .timer-img {
+        width: 15%;
+      }
+  
+    .score-box {
+      flex: 1;
+      gap: 12px;
+    }
+
+    .score{
+        flex-direction: row;
+        flex: 1;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .score-icon {
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0px;
+        width: 40%;
+    }
+    .score-num {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+  
+    .grill-panel {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      max-width: 600px;
+      width: 80%;
+    }
+
+    .hint-panel {
+        padding: 45px 80px;
+        border-radius: 16px;
+        flex-direction: column;
+    }
+    
+    .large-only {
+        display: none;
+    }
+    
+    .small-only {
+        display: block;
+        font-size: 16px;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+  }
+
+  @media (max-width: 860px) {
+
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+        margin-top: 0px;
+      }
+    
+    .info-panel {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        height: 20%;
+        gap: 10px;
+        margin-right: 0px;
+        margin-bottom: 20px;
+    }
+
+    .score{
+        flex-direction: row;
+        flex: 1;
+        padding: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .hint-panel {
+        display: none;
+      }
+
+    .grill-panel {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        max-width: 420px;
+        width: 50%;
+    }
+  }
+  
+
+  
+/* ===== Cooked: 輕微脈動閃爍 ===== */
+@keyframes takoyaki-pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0px #fff0; }
+    50% { transform: scale(1.05); box-shadow: 0 0 10px #f5f0e4; }
+}
+  
+.takoyaki-hole.cooked {
+    animation: takoyaki-pulse 1s infinite ease-in-out;
+}
+  
+/* ===== Burnt: 搖晃 + 微紅光 ===== */
+@keyframes takoyaki-shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    50% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+}
+  
+.takoyaki-hole.burnt {
+    animation: takoyaki-shake 0.5s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(44, 44, 44, 0.4);
+}
+  
+@keyframes takoyaki-bubbling {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.02); /* 微鼓起 */
+    }
+}
+  
+.takoyaki-hole.raw {
+    animation: takoyaki-bubbling 1s infinite ease-in-out;
+}
